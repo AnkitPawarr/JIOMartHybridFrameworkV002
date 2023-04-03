@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.JioMart.Resources.Listeners"/>
+  </listeners>
+  <test thread-count="5" name="JioTest(failed)" verbose="0">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="com.JioMart.testCases.TC_003_AddToCart">
+        <methods>
+          <include name="verifyLoginTest"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="verifyCartCount"/>
+          <include name="readMethodName"/>
+          <include name="verifyItemsAddedInCart"/>
+        </methods>
+      </class> <!-- com.JioMart.testCases.TC_003_AddToCart -->
+    </classes>
+  </test> <!-- JioTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->
