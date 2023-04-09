@@ -20,33 +20,33 @@ public class Listeners extends base implements ITestListener {
 
 	public void onTestStart(ITestResult result) {
 		// Invoked each time before a test will be invoked
-
-		test = extent.createTest(result.getName());
+		System.out.println("Test Suite started!");
+		test = extent.createTest(result.getMethod().getMethodName());
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		// Invoked each time a test succeeds.
-		test.log(Status.PASS, MarkupHelper.createLabel(result.getName(), ExtentColor.GREEN));
+		test.log(Status.PASS, MarkupHelper.createLabel(result.getMethod().getMethodName(), ExtentColor.GREEN));
 	}
 
 	public void onTestFailure(ITestResult result) {
 		// Invoked each time a test fails.
-		test.log(Status.FAIL, MarkupHelper.createLabel(result.getName(), ExtentColor.RED));
+		test.log(Status.FAIL, MarkupHelper.createLabel(result.getMethod().getMethodName(), ExtentColor.RED));
 		test.fail(result.getThrowable());
 
 		String screenshotPath = null;
 		try {
-			screenshotPath = getScreenshot(driver, result.getName());
+			screenshotPath = getScreenshot(driver, result.getMethod().getMethodName());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		test.addScreenCaptureFromPath(screenshotPath, result.getName());
+		test.addScreenCaptureFromPath(screenshotPath, result.getMethod().getMethodName());
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		// Invoked each time a test is skipped.
-		test.log(Status.SKIP, MarkupHelper.createLabel(result.getName(), ExtentColor.ORANGE));
+		test.log(Status.SKIP, MarkupHelper.createLabel(result.getMethod().getMethodName(), ExtentColor.ORANGE));
 		test.skip(result.getThrowable());
 	}
 
@@ -77,6 +77,7 @@ public class Listeners extends base implements ITestListener {
 		 * &lt;test&gt; tag have run and all their Configuration methods have been
 		 * called.
 		 */
+		System.out.println(("Test Suite is ending!"));
 		extent.flush();
 		extent.getStats();
 	}
